@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560">
+  <defs>
+    <linearGradient id="w" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7fe3f0"/><stop offset="0.55" stop-color="#3fb5d8"/><stop offset="1" stop-color="#1b7fb0"/>
+    </linearGradient>
+    <linearGradient id="sand" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f1deaa"/><stop offset="1" stop-color="#d9bd7a"/>
+    </linearGradient>
+    <g id="flower">
+      <circle cx="0" cy="0" r="6" fill="#fff"/>
+      <g fill="#ff9ad5"><circle cx="0" cy="-13" r="9"/><circle cx="12" cy="-4" r="9"/><circle cx="8" cy="11" r="9"/><circle cx="-8" cy="11" r="9"/><circle cx="-12" cy="-4" r="9"/></g>
+      <circle cx="0" cy="0" r="6" fill="#ffe14d"/>
+    </g>
+  </defs>
+  <rect width="960" height="560" fill="url(#w)"/>
+  <!-- tia nắng -->
+  <g fill="#ffffff" opacity="0.12">
+    <polygon points="120,0 200,0 330,470 150,470"/><polygon points="420,0 480,0 600,470 440,470"/><polygon points="720,0 790,0 900,470 740,470"/>
+  </g>
+  <!-- hoa trên trời -->
+  <g opacity="0.85">
+    <use href="#flower" transform="translate(110,60) scale(1.3)"/>
+    <use href="#flower" transform="translate(330,105) scale(1)"/>
+    <use href="#flower" transform="translate(560,50) scale(1.5)"/>
+    <use href="#flower" transform="translate(800,95) scale(1.1)"/>
+  </g>
+  <!-- đồi xa -->
+  <path d="M0 430 Q120 360 260 420 T520 410 T780 420 T960 395 V560 H0Z" fill="#2c97bd" opacity="0.7"/>
+  <!-- đáy cát -->
+  <path d="M0 470 Q240 440 480 462 T960 455 V560 H0Z" fill="url(#sand)"/>
+  <!-- đường lát -->
+  <path d="M0 520 Q300 490 600 515 T960 505" stroke="#c7a866" stroke-width="10" fill="none" opacity="0.6"/>
+  <!-- nhà quả dứa của SpongeBob -->
+  <g transform="translate(40,250)">
+    <ellipse cx="70" cy="215" rx="55" ry="10" fill="#000" opacity="0.15"/>
+    <path d="M70 -10 L50 40 L70 20 L90 40Z" fill="#2f9e44"/>
+    <path d="M70 -20 L58 40 L70 25 L82 40Z" fill="#3cb44a"/>
+    <path d="M20 60 Q70 30 120 60 L125 190 Q70 225 15 190Z" fill="#f4a21d" stroke="#b86e00" stroke-width="3"/>
+    <g stroke="#c47a05" stroke-width="2" opacity="0.7"><path d="M25 90 L115 130"/><path d="M115 90 L25 130"/><path d="M25 140 L115 180"/><path d="M115 140 L25 180"/></g>
+    <circle cx="70" cy="95" r="17" fill="#cfeef7" stroke="#8a5a1d" stroke-width="5"/>
+    <circle cx="70" cy="95" r="17" fill="none" stroke="#fff" stroke-width="1" opacity="0.6"/>
+    <rect x="50" y="150" width="40" height="52" rx="18" fill="#7c4a1a"/>
+    <circle cx="82" cy="178" r="3" fill="#ffd34d"/>
+  </g>
+  <!-- nhà Squidward (moai) -->
+  <g transform="translate(395,255)">
+    <ellipse cx="55" cy="205" rx="45" ry="8" fill="#000" opacity="0.15"/>
+    <path d="M20 205 L25 60 Q55 20 85 60 L90 205Z" fill="#9aa5ad" stroke="#5f6b73" stroke-width="3"/>
+    <rect x="22" y="78" width="66" height="14" rx="6" fill="#5f6b73"/>
+    <ellipse cx="38" cy="85" rx="9" ry="6" fill="#222"/><ellipse cx="72" cy="85" rx="9" ry="6" fill="#222"/>
+    <path d="M52 95 L58 120 L48 120Z" fill="#7d8991"/>
+    <rect x="35" y="140" width="40" height="12" rx="4" fill="#5f6b73"/>
+    <rect x="42" y="165" width="26" height="40" rx="10" fill="#444"/>
+  </g>
+  <!-- nhà Patrick (tảng đá) -->
+  <g transform="translate(700,330)">
+    <ellipse cx="110" cy="140" rx="105" ry="12" fill="#000" opacity="0.15"/>
+    <path d="M10 140 Q0 70 55 40 Q110 5 165 40 Q220 75 210 140Z" fill="#a66f4e" stroke="#6e4430" stroke-width="3"/>
+    <path d="M60 60 Q90 45 120 62" stroke="#c28a68" stroke-width="5" fill="none" opacity="0.8"/>
+    <path d="M30 110 Q50 95 75 108" stroke="#8a583d" stroke-width="4" fill="none"/>
+  </g>
+  <!-- san hô, rong biển -->
+  <g fill="none" stroke-linecap="round">
+    <path d="M330 480 Q320 440 335 410 M335 440 Q352 430 356 410" stroke="#ff7ab0" stroke-width="8"/>
+    <path d="M640 490 Q628 450 645 420 M645 455 Q662 445 666 425" stroke="#ff9f43" stroke-width="8"/>
+    <path d="M300 500 Q285 465 300 440 Q315 465 300 500" stroke="#2f9e44" stroke-width="6"/>
+    <path d="M930 520 Q915 480 930 450 Q945 480 930 520" stroke="#2f9e44" stroke-width="6"/>
+  </g>
+  <!-- bong bóng -->
+  <g fill="#fff" fill-opacity="0.25" stroke="#fff" stroke-opacity="0.7">
+    <circle cx="260" cy="300" r="9"/><circle cx="272" cy="260" r="6"/><circle cx="640" cy="240" r="8"/><circle cx="880" cy="330" r="11"/><circle cx="520" cy="180" r="5"/>
+  </g>
+</svg>
