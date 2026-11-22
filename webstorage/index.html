@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demo HTML5 Web Storage</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--ink:#1f2430;--muted:#5b6475;--accent:#2f6fed;--btn:#fff;--line:#d9deea}
+[data-theme="dark"]{--bg:#12151c;--card:#1b2030;--ink:#eef1f8;--muted:#a6afc2;--accent:#7aa2ff;--btn:#0d1220;--line:#2d3550}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+header,main{max-width:900px;margin:0 auto;padding:16px}
+h1{margin:8px 0 4px;font-size:1.6rem}
+header p{margin:0;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:16px}
+@media (max-width:480px){.grid{grid-template-columns:1fr}}
+section{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px}
+h2{margin:0 0 4px;font-size:1.1rem}
+.tag{font-size:.8rem;color:var(--muted);margin:0 0 10px}
+button{background:var(--accent);color:var(--btn);border:0;border-radius:6px;padding:8px 14px;font:inherit;cursor:pointer}
+button.alt{background:transparent;color:var(--ink);border:1px solid var(--line)}
+input,textarea{width:100%;padding:8px;margin-bottom:8px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);font:inherit}
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+th,td{text-align:left;padding:4px 6px;border-bottom:1px solid var(--line);word-break:break-all}
+.status{color:var(--muted);font-size:.85rem;margin:0}
+</style>
+</head>
+<body>
+<header>
+  <h1>Demo HTML5 Web Storage</h1>
+  <p>Local Storage và Session Storage. Mở DevTools (F12) → Application → Storage để xem dữ liệu.</p>
+</header>
+<main class="grid">
+
+<section>
+  <h2>1. Giao diện sáng / tối</h2>
+  <p class="tag">localStorage · khóa: theme</p>
+  <button id="theme">Đổi giao diện</button>
+  <p class="status">Tải lại trang hoặc đóng trình duyệt, lựa chọn vẫn được giữ.</p>
+</section>
+
+<section>
+  <h2>2. Ghi chú nhanh</h2>
+  <p class="tag">localStorage · khóa: note · đồng bộ giữa các tab</p>
+  <textarea id="note" rows="4" placeholder="Gõ ghi chú, mở thêm tab khác để thấy đồng bộ"></textarea>
+  <p class="status" id="noteStatus"></p>
+</section>
+
+<section>
+  <h2>3. Bộ đếm lượt xem</h2>
+  <p class="tag">sessionStorage: views · localStorage: visits</p>
+  <p>Lượt xem trong phiên (tab) này: <strong id="views">0</strong></p>
+  <p>Tổng số lần mở trang (mọi tab): <strong id="visits">0</strong></p>
+  <p class="status">Mở tab mới: số phiên bắt đầu lại từ 1, tổng vẫn tăng tiếp.</p>
+</section>
+
+<section>
+  <h2>4. Lưu nháp biểu mẫu</h2>
+  <p class="tag">sessionStorage · khóa: draft_name, draft_msg</p>
+  <input id="dname" placeholder="Họ tên">
+  <textarea id="dmsg" rows="3" placeholder="Nội dung"></textarea>
+  <button class="alt" id="dclear">Xóa nháp</button>
+  <p class="status">Gõ dở rồi bấm F5, nội dung còn nguyên. Đóng tab thì mất.</p>
+</section>
+
+<section>
+  <h2>localStorage hiện có</h2>
+  <table><thead><tr><th>Khóa</th><th>Giá trị</th></tr></thead><tbody id="tl"></tbody></table>
+  <p><button class="alt" id="cl">Xóa localStorage</button></p>
+</section>
+
+<section>
+  <h2>sessionStorage hiện có</h2>
+  <table><thead><tr><th>Khóa</th><th>Giá trị</th></tr></thead><tbody id="ts"></tbody></table>
+  <p><button class="alt" id="cs">Xóa sessionStorage</button></p>
+</section>
+
+</main>
+<script>
+function safe(fn, fallback) { try { return fn(); } catch (e) { return fallback; } }
+const $ = id => document.getElementById(id);
+
+function applyTheme() {
+  document.documentElement.dataset.theme = safe(() => localStorage.getItem('theme'), null) || 'light';
+}
+applyTheme();
+$('theme').onclick = function () {
+  const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+  safe(() => localStorage.setItem('theme', next));
+  applyTheme(); refresh();
+};
+
+const note = $('note'), noteStatus = $('noteStatus');
+note.value = safe(() => localStorage.getItem('note'), '') || '';
+let timer;
+note.addEventListener('input', function () {
+  clearTimeout(timer);
+  timer = setTimeout(function () {
+    safe(() => localStorage.setItem('note', note.value));
+    noteStatus.textContent = 'Đã lưu lúc ' + new Date().toLocaleTimeString('vi-VN');
+    refresh();
+  }, 400);
+});
+
+const views = (Number(safe(() => sessionStorage.getItem('views'), 0)) || 0) + 1;
+safe(() => sessionStorage.setItem('views', views));
+const visits = (Number(safe(() => localStorage.getItem('visits'), 0)) || 0) + 1;
+safe(() => localStorage.setItem('visits', visits));
+$('views').textContent = views;
+$('visits').textContent = visits;
+
+const dn = $('dname'), dm = $('dmsg');
+dn.value = safe(() => sessionStorage.getItem('draft_name'), '') || '';
+dm.value = safe(() => sessionStorage.getItem('draft_msg'), '') || '';
+dn.addEventListener('input', () => { safe(() => sessionStorage.setItem('draft_name', dn.value)); refresh(); });
+dm.addEventListener('input', () => { safe(() => sessionStorage.setItem('draft_msg', dm.value)); refresh(); });
+$('dclear').onclick = function () {
+  safe(() => { sessionStorage.removeItem('draft_name'); sessionStorage.removeItem('draft_msg'); });
+  dn.value = ''; dm.value = ''; refresh();
+};
+
+function fill(tbodyId, store) {
+  const tb = $(tbodyId); tb.textContent = '';
+  const n = safe(() => store().length, 0);
+  if (!n) { const tr = tb.insertRow(); const td = tr.insertCell(); td.colSpan = 2; td.textContent = '(trống)'; return; }
+  for (let i = 0; i < n; i++) {
+    const k = store().key(i), v = store().getItem(k);
+    const tr = tb.insertRow();
+    tr.insertCell().textContent = k;
+    tr.insertCell().textContent = v.length > 60 ? v.slice(0, 60) + '...' : v;
+  }
+}
+function refresh() {
+  fill('tl', () => localStorage);
+  fill('ts', () => sessionStorage);
+}
+$('cl').onclick = function () { safe(() => localStorage.clear()); location.reload(); };
+$('cs').onclick = function () { safe(() => sessionStorage.clear()); location.reload(); };
+
+window.addEventListener('storage', function (e) {
+  if (e.key === 'theme') applyTheme();
+  if (e.key === 'note') note.value = e.newValue || '';
+  refresh();
+});
+refresh();
+</script>
+</body>
+</html>
