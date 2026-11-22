@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Mouse Events</title>
+
+    <style>
+        div {
+            background-color: lightpink;
+            padding: 20px;
+            width: 200px;
+            text-align: center;
+        }
+
+        img {
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>JavaScript DOM</h1>
+
+    <h3>1: Mouse Event</h3>
+
+    <div onmouseover="this.innerHTML='mouse event'"
+         onmouseout="this.innerHTML='hover me'">
+        hover me
+    </div>
+
+    <h3>2: Thay doi kich thuoc hinh anh</h3>
+
+    <img src="https://i.scdn.co/image/ab6761610000e5eb66e0a040a53996e8bf19f9b5"
+         onmouseover="this.style.width='220px'"
+         onmouseout="this.style.width='200px'">
+
+    <h3>3: Hien thi gio hien tai</h3>
+
+    <button onclick="alert(new Date().toLocaleTimeString())">
+        Xem gio
+    </button>
+
+    <h3>4: Chuyen thanh chu in hoa</h3>
+
+    <input type="text" id="text" placeholder="Nhap noi dung">
+
+    <button onclick="document.getElementById('text').value = document.getElementById('text').value.toUpperCase()">
+        Chuyen chu hoa
+    </button>
+
+</body>
+</html>

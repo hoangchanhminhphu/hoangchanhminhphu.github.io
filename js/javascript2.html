@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Kiem tra nam nhuan</title>
+</head>
+<body>
+
+    <h1>Kiem tra nam nhuan</h1>
+
+    <script>
+        let year = parseInt(prompt("Nhap nam:"));
+        let month = parseInt(prompt("Nhap thang:"));
+        let isLeapYear = false;
+
+        if (year % 400 == 0) {
+            isLeapYear = true;
+        }
+        else if (year % 4 == 0 && year % 100 != 0) {
+            isLeapYear = true;
+        }
+
+        if (isLeapYear == true) {
+            document.write(year + ": Nam nhuan <br>");
+        }
+        else {
+            document.write(year + ": Khong phai nam nhuan <br>");
+        }
+
+        if (month == 2) {
+            if (isLeapYear == true) {
+                document.write("Thang " + month + " co 29 ngay");
+            }
+            else {
+                document.write("Thang " + month + " co 28 ngay");
+            }
+        }
+        else if (month == 4 || month == 6 || month == 9 || month == 11) {
+            document.write("Thang " + month + " co 30 ngay");
+        }
+        else if (month >= 1 && month <= 12) {
+            document.write("Thang " + month + " co 31 ngay");
+        }
+        else {
+            document.write("Thang khong hop le");
+        }
+
+    </script>
+
+</body>
+</html>

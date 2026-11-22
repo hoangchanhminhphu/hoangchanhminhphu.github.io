@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Giá hoa quả</title>
+</head>
+<body>
+
+    <h1>Giá hoa quả</h1>
+
+    <input type="text" id="ten_hoa_qua" placeholder="Nhập tên hoa quả">
+
+    <button onclick="xemGia()">Xem giá</button>
+
+    <p id="ket_qua"></p>
+
+    <script>
+        function xemGia() {
+            var ten = document.getElementById("ten_hoa_qua").value;
+            var gia = "";
+
+            switch (ten.toLowerCase().trim()) {
+                case "ổi":
+                    gia = "20000 VNĐ/kg";
+                    break;
+
+                case "dưa hấu":
+                    gia = "20000 VNĐ/kg";
+                    break;
+
+                case "táo":
+                    gia = "30000 VNĐ/kg";
+                    break;
+
+                case "cam":
+                    gia = "40000 VNĐ/kg";
+                    break;
+
+                case "chôm chôm":
+                    gia = "40000 VNĐ/kg";
+                    break;
+
+                case "măng cụt":
+                    gia = "50000 VNĐ/kg";
+                    break;
+
+                default:
+                    gia = "Tìm không thấy";
+            }
+
+            document.getElementById("ket_qua").innerHTML = gia;
+        }
+    </script>
+
+</body>
+</html>

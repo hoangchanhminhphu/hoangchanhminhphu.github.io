@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Tinh lai suat ngan hang</title>
+</head>
+<body>
+
+    <h1>Tinh lai suat ngan hang</h1>
+
+    <script>
+        var tienVay = Number(prompt("Nhap so tien vay (trieu dong):"));
+        var laiSuat = Number(prompt("Nhap lai suat (%/nam):"));
+        var soNam = Number(prompt("Nhap so nam vay:"));
+
+        var tienLai = tienVay * laiSuat / 100 * soNam;
+
+        var tongTien = tienVay + tienLai;
+
+        document.write("So tien vay: " + tienVay + " trieu dong <br>");
+        document.write("Tien lai: " + tienLai + " trieu dong <br>");
+        document.write("Tong tien phai tra: " + tongTien + " trieu dong");
+    </script>
+
+</body>
+</html>
